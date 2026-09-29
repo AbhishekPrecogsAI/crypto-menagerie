@@ -1,0 +1,5 @@
+# Python crypto dependencies — drive the GEN-003 dependency graph.
+cryptography==42.0.5
+pycryptodome==3.20.0
+liboqs-python==0.10.0
+pyOpenSSL==24.1.0

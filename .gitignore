@@ -1,0 +1,10 @@
+# Build / dependency output only. The certs and .env.example are demo
+# fixtures kept on purpose so the scanner can read them.
+node_modules/
+__pycache__/
+*.pyc
+/target/
+*.class
+*.o
+*.out
+dist/

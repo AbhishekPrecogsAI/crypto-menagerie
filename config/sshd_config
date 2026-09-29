@@ -1,0 +1,18 @@
+# sshd_config — SSH host-key, KEX, cipher and MAC inventory.
+# Expected CBOM: weak KEX (diffie-hellman-group1-sha1), legacy host key
+# (ssh-rsa / ssh-dss), weak ciphers (3des-cbc, arcfour) alongside modern
+# curve25519-sha256 and chacha20-poly1305. SSH crypto profile.
+
+# Host keys — a legacy DSA/RSA key next to a modern Ed25519 one.
+HostKey /etc/ssh/ssh_host_dsa_key          # ssh-dss — deprecated
+HostKey /etc/ssh/ssh_host_rsa_key          # ssh-rsa (SHA-1) — deprecated
+HostKey /etc/ssh/ssh_host_ed25519_key      # modern
+
+# Key exchange — one broken, one modern.
+KexAlgorithms diffie-hellman-group1-sha1,curve25519-sha256
+
+# Ciphers — 3DES and RC4 (arcfour) still offered.
+Ciphers 3des-cbc,arcfour,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com
+
+# MACs — HMAC-MD5/SHA1 (weak) plus a modern ETM MAC.
+MACs hmac-md5,hmac-sha1,hmac-sha2-256-etm@openssh.com
