@@ -1,0 +1,4 @@
+# Certificate index for Precogs "Fetch from URL" demo.
+# One certificate per line — relative paths resolve against this file's URL.
+rsa1024-sha1.pem
+ec-p256.pem
