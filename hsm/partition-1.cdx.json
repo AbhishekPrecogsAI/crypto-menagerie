@@ -1,0 +1,154 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:00000000-0000-4000-8000-000000007734",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-30T00:00:00Z",
+    "component": {
+      "type": "device",
+      "name": "jlr-prod-partition-1",
+      "properties": [
+        {
+          "name": "hsm:manufacturer",
+          "value": "Thales"
+        },
+        {
+          "name": "hsm:model",
+          "value": "Luna K7"
+        },
+        {
+          "name": "hsm:serialNumber",
+          "value": "LUNA-7734"
+        },
+        {
+          "name": "hsm:firmwareVersion",
+          "value": "7.8"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "k1",
+      "name": "RSA-2048 (ca-signing-key)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "private-key",
+          "state": "active"
+        },
+        "algorithmProperties": {
+          "cryptoFunctions": [
+            "sign"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "hsm:sensitive",
+          "value": "true"
+        },
+        {
+          "name": "hsm:extractable",
+          "value": "false"
+        },
+        {
+          "name": "hsm:alias",
+          "value": "ca-signing-key"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "k2",
+      "name": "ML-DSA-65 (pqc-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "private-key",
+          "state": "active"
+        },
+        "algorithmProperties": {
+          "cryptoFunctions": [
+            "sign"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "hsm:sensitive",
+          "value": "true"
+        },
+        {
+          "name": "hsm:extractable",
+          "value": "false"
+        },
+        {
+          "name": "hsm:alias",
+          "value": "pqc-signing"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "k3",
+      "name": "AES-256 (master-kek)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "state": "active"
+        },
+        "algorithmProperties": {
+          "cryptoFunctions": [
+            "encrypt",
+            "wrapKey"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "hsm:sensitive",
+          "value": "true"
+        },
+        {
+          "name": "hsm:extractable",
+          "value": "false"
+        },
+        {
+          "name": "hsm:alias",
+          "value": "master-kek"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "k4",
+      "name": "ECDSA-P256 (tls-key)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "private-key",
+          "state": "active"
+        },
+        "algorithmProperties": {
+          "cryptoFunctions": [
+            "sign"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "hsm:sensitive",
+          "value": "true"
+        },
+        {
+          "name": "hsm:extractable",
+          "value": "false"
+        }
+      ]
+    }
+  ]
+}
