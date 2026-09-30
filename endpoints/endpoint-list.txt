@@ -1,0 +1,33 @@
+# Precogs demo — paste into "Paste a list" or upload this file.
+# One host per line; optional port and/or type after it.
+
+# Modern TLS 1.3 (Cloudflare also offers the PQC hybrid X25519MLKEM768)
+cloudflare.com
+www.google.com
+github.com
+
+# host:port and URL forms
+https://www.microsoft.com/en-gb/
+api.github.com:443
+
+# Deliberately weak / broken certificates (badssl.com test hosts)
+expired.badssl.com
+self-signed.badssl.com
+wrong.host.badssl.com
+sha1-intermediate.badssl.com
+rsa2048.badssl.com
+ecc256.badssl.com
+
+# SSH (per-line type overrides the default)
+github.com 22 ssh
+gitlab.com ssh
+
+# Should FAIL with a clear reason (nothing listening / no such host)
+localhost 9 tls
+does-not-exist.precogs-demo.invalid
+
+# Should be SKIPPED before sending (invalid host name)
+under_score.example.com
+
+# Duplicate (different case) — dropped
+GitHub.com

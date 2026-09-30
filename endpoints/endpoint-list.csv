@@ -1,0 +1,7 @@
+host,port,type,owner
+cloudflare.com,443,tls,platform-team
+github.com,22,ssh,devops
+expired.badssl.com,443,tls,pki-team
+self-signed.badssl.com,,tls,pki-team
+www.google.com,,https,web-team
+does-not-exist.precogs-demo.invalid,443,tls,unknown
