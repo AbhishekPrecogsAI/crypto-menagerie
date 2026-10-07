@@ -1,0 +1,91 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:a0b841f1-424b-481e-97c4-49d90955a61c",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-25T14:40:03Z",
+    "tools": { "components": [ { "type": "application", "name": "precogs-hsm-agent", "version": "1.2.0" } ] },
+    "component": {
+      "type": "device",
+      "bom-ref": "hsm-ota-signing",
+      "name": "JLR-OTA-SIGNING",
+      "properties": [
+        { "name": "hsm:manufacturer", "value": "Thales" },
+        { "name": "hsm:model",        "value": "Luna Network HSM A790" },
+        { "name": "hsm:firmwareVersion", "value": "7.9.1" },
+        { "name": "hsm:hardwareVersion", "value": "A790" },
+        { "name": "hsm:serialNumber", "value": "LNA-7790-3315" },
+        { "name": "hsm:slot",         "value": "2" },
+        { "name": "hsm:environment",  "value": "offboard" }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ota-manifest",
+      "name": "EC-521 (ota-manifest-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 521 },
+        "algorithmProperties": { "curve": "secp521r1", "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ota-manifest-signing" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:curve",       "value": "secp521r1" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ota-pqc",
+      "name": "ML-DSA-65 (ota-pqc-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key" },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ota-pqc-signing" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ota-package",
+      "name": "AES-256 (ota-package-encryption)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 256 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ota-package-encryption" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ota-export",
+      "name": "RSA-4096 (ota-escrow-export)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 4096 },
+        "algorithmProperties": { "cryptoFunctions": ["decrypt", "unwrap"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ota-escrow-export" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "false" },
+        { "name": "hsm:extractable", "value": "true" }
+      ]
+    }
+  ]
+}

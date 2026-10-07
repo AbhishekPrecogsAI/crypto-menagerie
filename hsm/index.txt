@@ -1,3 +1,8 @@
 # PKCS#11 agent outputs, one per HSM partition
 partition-1.cdx.json
 partition-2.cdx.json
+fleet-pki-luna-k7.cdx.json
+pki-issuing-ca.cdx.json
+ota-signing.cdx.json
+telematics-backend.cdx.json
+dealer-diagnostics.cdx.json

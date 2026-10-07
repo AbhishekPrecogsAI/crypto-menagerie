@@ -1,0 +1,187 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:5f7d1b0a-6c1e-4a2f-9d3b-8e0c4a1f2b77",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-06T09:14:22Z",
+    "tools": { "components": [ { "type": "application", "name": "precogs-hsm-agent", "version": "1.2.0" } ] },
+    "component": {
+      "type": "device",
+      "bom-ref": "hsm-partition-1",
+      "name": "JLR-PROD-PARTITION-1",
+      "properties": [
+        { "name": "hsm:manufacturer",   "value": "Thales" },
+        { "name": "hsm:model",          "value": "Luna K7" },
+        { "name": "hsm:firmwareVersion","value": "7.8.4" },
+        { "name": "hsm:hardwareVersion","value": "K7-C2" },
+        { "name": "hsm:serialNumber",   "value": "1234567890" },
+        { "name": "hsm:slot",           "value": "1" },
+        { "name": "hsm:environment",    "value": "offboard" }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ca-root",
+      "name": "RSA-4096 (jlr-ca-root)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 4096 },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "jlr-ca-root" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-tls-signing",
+      "name": "EC-256 (vehicle-tls-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 256 },
+        "algorithmProperties": { "curve": "secp256r1", "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "vehicle-tls-signing" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:curve",       "value": "secp256r1" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-pqc-pilot",
+      "name": "ML-DSA-65 (pqc-pilot-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key" },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "pqc-pilot-signing" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-kek",
+      "name": "AES-256 (fleet-kek)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 256 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt", "keywrap"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "fleet-kek" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-legacy-backup",
+      "name": "RSA-2048 (legacy-backup-wrap)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 2048 },
+        "algorithmProperties": { "cryptoFunctions": ["decrypt", "unwrap"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "legacy-backup-wrap" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "false" },
+        { "name": "hsm:extractable", "value": "true" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ecu-firmware-signing",
+      "name": "EC-384 (ecu-firmware-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 384 },
+        "algorithmProperties": { "curve": "secp384r1", "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ecu-firmware-signing" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:curve",       "value": "secp384r1" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-v2x-session-kem",
+      "name": "ML-KEM-768 (v2x-session-kem)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key" },
+        "algorithmProperties": { "cryptoFunctions": ["encapsulate", "decapsulate"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "v2x-session-kem" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-diag-session",
+      "name": "AES-128 (diag-session-key)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 128 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "diag-session-key" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-legacy-immobiliser",
+      "name": "3DES-168 (legacy-immobiliser)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 168 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "legacy-immobiliser" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "cert-ca-root",
+      "name": "JLR Root CA",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=JLR Root CA, O=Jaguar Land Rover, C=GB",
+          "issuerName":  "CN=JLR Root CA, O=Jaguar Land Rover, C=GB",
+          "notValidBefore": "2024-01-01T00:00:00Z",
+          "notValidAfter":  "2039-01-01T00:00:00Z",
+          "subjectPublicKeyRef": "key-ca-root"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:57aee95e-ec74-435c-a7bb-aa02b1f68fa6",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-01T11:05:30Z",
+    "tools": { "components": [ { "type": "application", "name": "precogs-hsm-agent", "version": "1.2.0" } ] },
+    "component": {
+      "type": "device",
+      "bom-ref": "hsm-diagnostics",
+      "name": "JLR-DEALER-DIAGNOSTICS",
+      "properties": [
+        { "name": "hsm:manufacturer", "value": "Marvell" },
+        { "name": "hsm:model",        "value": "LiquidSecurity 2" },
+        { "name": "hsm:firmwareVersion", "value": "3.4.0" },
+        { "name": "hsm:hardwareVersion", "value": "LS2-PCIe" },
+        { "name": "hsm:serialNumber", "value": "MRV-2210-0458" },
+        { "name": "hsm:slot",         "value": "3" },
+        { "name": "hsm:environment",  "value": "offboard" }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-diag-auth",
+      "name": "RSA-2048 (diag-tool-auth)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 2048 },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "diag-tool-auth" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-seed-key",
+      "name": "AES-128 (ecu-seed-key)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 128 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ecu-seed-key" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-dealer-tls",
+      "name": "EC-256 (dealer-portal-tls)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 256 },
+        "algorithmProperties": { "curve": "secp256r1", "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "dealer-portal-tls" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:curve",       "value": "secp256r1" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-diag-backup",
+      "name": "RSA-2048 (diag-backup-wrap)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 2048 },
+        "algorithmProperties": { "cryptoFunctions": ["decrypt", "unwrap"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "diag-backup-wrap" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "false" },
+        { "name": "hsm:extractable", "value": "true" }
+      ]
+    }
+  ]
+}

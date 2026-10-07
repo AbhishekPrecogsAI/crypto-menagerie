@@ -1,0 +1,107 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:6b8e4d84-1ac9-4b1c-b11e-a731e0bccfe0",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-28T06:15:47Z",
+    "tools": { "components": [ { "type": "application", "name": "precogs-hsm-agent", "version": "1.2.0" } ] },
+    "component": {
+      "type": "device",
+      "bom-ref": "hsm-telematics",
+      "name": "JLR-TELEMATICS-BACKEND",
+      "properties": [
+        { "name": "hsm:manufacturer", "value": "Utimaco" },
+        { "name": "hsm:model",        "value": "SecurityServer Se52" },
+        { "name": "hsm:firmwareVersion", "value": "5.2.1" },
+        { "name": "hsm:hardwareVersion", "value": "Se52-Gen2" },
+        { "name": "hsm:serialNumber", "value": "UTI-5206-1187" },
+        { "name": "hsm:slot",         "value": "1" },
+        { "name": "hsm:environment",  "value": "offboard" }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-tsp-tls",
+      "name": "EC-256 (tsp-tls-server)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 256 },
+        "algorithmProperties": { "curve": "secp256r1", "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "tsp-tls-server" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:curve",       "value": "secp256r1" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-vehicle-kem",
+      "name": "ML-KEM-1024 (vehicle-session-kem)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key" },
+        "algorithmProperties": { "cryptoFunctions": ["encapsulate", "decapsulate"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "vehicle-session-kem" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-db-kek",
+      "name": "AES-256 (telemetry-db-kek)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 256 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt", "keywrap"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "telemetry-db-kek" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-api-hmac",
+      "name": "HMAC-SHA256 (api-request-signing)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 256 },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "api-request-signing" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-legacy-3des",
+      "name": "3DES-168 (legacy-gateway-link)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "secret-key", "size": 168 },
+        "algorithmProperties": { "cryptoFunctions": ["encrypt", "decrypt"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "legacy-gateway-link" },
+        { "name": "hsm:objectClass", "value": "secret-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    }
+  ]
+}

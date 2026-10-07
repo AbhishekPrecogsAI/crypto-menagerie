@@ -1,0 +1,106 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:8ef2a830-19ab-45ee-a7ef-e093f2c91d07",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-20T08:02:11Z",
+    "tools": { "components": [ { "type": "application", "name": "precogs-hsm-agent", "version": "1.2.0" } ] },
+    "component": {
+      "type": "device",
+      "bom-ref": "hsm-pki-issuing",
+      "name": "JLR-PKI-ISSUING-CA",
+      "properties": [
+        { "name": "hsm:manufacturer", "value": "Entrust" },
+        { "name": "hsm:model",        "value": "nShield Connect XC" },
+        { "name": "hsm:firmwareVersion", "value": "13.4.3" },
+        { "name": "hsm:hardwareVersion", "value": "XC-High" },
+        { "name": "hsm:serialNumber", "value": "ENT-4471-0921" },
+        { "name": "hsm:slot",         "value": "0" },
+        { "name": "hsm:environment",  "value": "offboard" }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-issuing-ca",
+      "name": "RSA-3072 (vehicle-issuing-ca)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 3072 },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "vehicle-issuing-ca" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-ocsp-signer",
+      "name": "EC-384 (ocsp-responder)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 384 },
+        "algorithmProperties": { "curve": "secp384r1", "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "ocsp-responder" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:curve",       "value": "secp384r1" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-legacy-ca",
+      "name": "RSA-1024 (legacy-dealer-ca)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key", "size": 1024 },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "legacy-dealer-ca" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "key-pqc-root",
+      "name": "ML-DSA-87 (pqc-root-pilot)",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": { "type": "private-key" },
+        "algorithmProperties": { "cryptoFunctions": ["sign", "verify"] }
+      },
+      "properties": [
+        { "name": "hsm:alias",       "value": "pqc-root-pilot" },
+        { "name": "hsm:objectClass", "value": "private-key" },
+        { "name": "hsm:sensitive",   "value": "true" },
+        { "name": "hsm:extractable", "value": "false" }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "cert-issuing-ca",
+      "name": "JLR Vehicle Issuing CA",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=JLR Vehicle Issuing CA, O=Jaguar Land Rover, C=GB",
+          "issuerName": "CN=JLR Root CA, O=Jaguar Land Rover, C=GB",
+          "notValidBefore": "2025-03-01T00:00:00Z",
+          "notValidAfter": "2033-03-01T00:00:00Z",
+          "subjectPublicKeyRef": "key-issuing-ca"
+        }
+      }
+    }
+  ]
+}
